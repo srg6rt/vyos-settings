@@ -1,0 +1,46 @@
+ show firewall
+ all-ping enable
+ broadcast-ping disable
+ config-trap disable
+ ipv6-receive-redirects disable
+ ipv6-src-route disable
+ ip-src-route disable
+ log-martians enable
+ name BLOCK-HTTPS-HTTP {
+     default-action drop
+     rule 10 {
+         action drop
+         destination {
+             port 443,80
+         }
+         protocol tcp
+         source {
+             address 10.0.0.100
+         }
+         state {
+             established enable
+             new enable
+         }
+     }
+     rule 20 {
+         action accept
+         destination {
+             port 443,80,8080
+         }
+         disable
+         protocol tcp_udp
+         source {
+             address 192.168.1.16
+             port 443,80,8080
+         }
+         state {
+             established enable
+             new enable
+         }
+     }
+ }
+ receive-redirects disable
+ send-redirects enable
+ source-validation disable
+ syn-cookies enable
+ twa-hazards-protection disable
