@@ -1,0 +1,29 @@
+show interfaces
+ ethernet eth0 {
+     address WAN/24
+     description WAN
+     duplex auto
+     smp_affinity auto
+     speed auto
+ }
+ ethernet eth1 {
+     address 10.0.0.10/24
+     description LAN
+     duplex auto
+     firewall {
+         in {
+             name BLOCK-HTTPS-HTTP
+         }
+     }
+     policy {
+     }
+     smp_affinity auto
+     speed auto
+ }
+ ethernet eth2 {
+     duplex auto
+     smp_affinity auto
+     speed auto
+ }
+ loopback lo {
+ }
