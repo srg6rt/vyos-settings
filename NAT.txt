@@ -1,0 +1,28 @@
+ show nat
+
+ destination {
+     rule 10 {
+         description "Allow connect to 10.0.0.100 through WAN"
+         destination {
+             address WAN
+             port 80
+         }
+         inbound-interface eth0
+         protocol tcp_udp
+         translation {
+             address 10.0.0.100
+             port 80
+         }
+     }
+ }
+ source {
+     rule 20 {
+         outbound-interface eth0
+         source {
+             address 10.0.0.100
+         }
+         translation {
+             address masquerade
+         }
+     }
+ }
