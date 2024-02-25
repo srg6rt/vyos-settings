@@ -1,0 +1,7 @@
+First commands:
+
+show system
+set system gateway-address "WAN Gateway"
+set system name-server "WAN DNS1"
+set system name-server "WAN DNS2"
+set service ssh port 2322
