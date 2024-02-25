@@ -1,0 +1,22 @@
+ show service webproxy
+
+ cache-size 100
+ default-port 3128
+ listen-address 10.0.0.10 {
+ }
+ proxy-bypass 192.168.1.1
+ proxy-bypass 192.168.1.16
+ url-filtering {
+     squidguard {
+         block-category publicite
+         default-action allow
+         local-block news.google.com
+         local-block twitter.com
+         local-ok music.youtube.com
+         local-ok googleadservices.com
+         local-ok 192.168.1.1
+         local-ok 192.168.1.16
+         local-block-keyword "(.*rezka.*)"
+         redirect-url http://www.google.com
+     }
+ }
